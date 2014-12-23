@@ -1,6 +1,8 @@
 .DS_Store
 ENV/
 migrations/
+bower_components/
+
 keys.py
 
 db.sqlite3

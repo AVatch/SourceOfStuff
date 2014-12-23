@@ -1,4 +1,61 @@
-{% extends 'base.html' %}
-{% block content %}
-<p>This is an item</p>
+{% extends 'home.html' %}
+{% block item %}
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-8">
+            <h2>{{item.name}}</h2>
+            <small>{{item.time_created}}</small>
+            <hr></div>
+            <div class="col-xs-4">
+                <div class="btn-group btn-group-sm pull-right" role="group">
+                    <button style="outline:none;" type="button" class="btn btn-default btn-lg"><i class="ion-ios-arrow-up"></i> {{item.upvotes}}</button>
+                    <button style="outline:none;" type="button" class="btn btn-default btn-lg"><i class="ion-ios-arrow-down"></i> {{item.downvotes}}</button>
+                    <button style="outline:none;" type="button" class="btn btn-default btn-lg">&nbsp<i class="ion-ios-compose-outline"></i>&nbsp</button>
+                    <button style="outline:none;" type="button" class="btn btn-default btn-lg">&nbsp<i class="ion-ios-more-outline"></i>&nbsp</button>
+                </div>
+            </div>
+            
+        </div><!-- /row 01 -->
+        <div class="row">
+            <div class="col-md-8">
+                <p>{{item.origin_story}}</p>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-rounded" src="http://placehold.it/350x350">
+                    </div>
+                    <div class="col-md-12">
+                        <h5>First Mention:</h5>
+                        <small>1993</small>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Geographic Origin:</h5>
+                        <small>Europe</small>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Contributors:</h5>
+                        {% for contributor in item.contributors.all %}
+                            <img class="img-circle" src="http://placehold.it/50x50">
+                        {% endfor %}
+                    </div>
+                </div>    
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <h1>{{item.name}}</h1>
+    <hr>
+    {% for contributor in item.contributors.all %}
+    <span>{{contributor.username}}</span>
+    {% endfor %}
+    <hr>
+    {{item.origin_story}}
+    <hr>
+    {{item.upvotes}} {{item.downvotes}} -->
+  </div>
 {% endblock %}

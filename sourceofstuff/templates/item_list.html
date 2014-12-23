@@ -1,10 +1,20 @@
 {% extends 'home.html' %}
 
-{% block item_list %}
-  <p>Here are the items</p>
-  <ul>
-    {% for item in object_list %}
-      <li>{{ item.name }}</li>
-    {% endfor %}
-  </ul>
+{% block item %}
+<div class="container">
+{% for item in item_list %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><a href="/item/{{item.pk}}">{{item.name}}</a></h3>
+        </div>
+        <div class="panel-body">
+          {{item.origin_story}}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
 {% endblock %}

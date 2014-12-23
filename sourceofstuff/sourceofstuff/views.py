@@ -5,7 +5,7 @@ from contributors.forms import UserCreateForm, UserAuthForm
 
 
 class BaseView(View):
-    template_name = 'test.html'
+    template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
         callback = {}

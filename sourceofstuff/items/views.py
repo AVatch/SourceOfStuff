@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import View
 
-# Create your views here.
+
+class ItemView(View):
+    template_name = 'test.html'
+
+    def get(self, request, *args, **kwargs):
+        callback = {}
+        callback['hello'] = 'world'
+        return render(request, self.template_name, callback)

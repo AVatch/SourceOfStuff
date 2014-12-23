@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    {% block extra_styles %} {% endblock %}
+  </head>
+  <body>
+    <h1>Hi there this is a base dir</h1>
+
+    {% block content %} {% endblock %}
+
+    {% block extra_scripts %} {% endblock %}
+  </body>
+</html>

@@ -1,5 +1,9 @@
 .DS_Store
+ENV/
+
 keys.py
+
 db.sqlite3
+
 *.pyc
 __init__.py

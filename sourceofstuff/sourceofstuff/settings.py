@@ -36,12 +36,11 @@ BASE_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    '',
 )
 
 CUSTOM_APPS = (
     'items',
-    'users'
+    'contributors'
 )
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
@@ -71,6 +70,8 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'contributors.Contributor'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -91,4 +92,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static")
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
 )

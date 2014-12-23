@@ -5,5 +5,8 @@ from items.views import ItemView
 
 urlpatterns = patterns('',
     url(r'^$', ItemView.as_view()),
+
+    url(r'^logout$', 'contributors.views.logout_view'),
+
     url(r'^admin/', include(admin.site.urls)),
 )

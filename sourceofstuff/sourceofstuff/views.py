@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic import View
-from django.contrib.auth import login, authenticate
 
-from contributors.forms import UserCreateForm
+from contributors.forms import UserCreateForm, UserAuthForm
 
 
 class BaseView(View):
@@ -10,6 +9,8 @@ class BaseView(View):
 
     def get(self, request, *args, **kwargs):
         callback = {}
-        user_form = UserCreateForm()
-        callback['user_form'] = user_form
+        user_create_form = UserCreateForm()
+        callback['user_create_form'] = user_create_form
+        user_auth_form = UserAuthForm()
+        callback['user_auth_form'] = user_auth_form
         return render(request, self.template_name, callback)

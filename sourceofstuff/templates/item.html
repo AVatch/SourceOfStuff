@@ -3,11 +3,11 @@
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="row">
+        <div class="row" style="border-bottom:1px solid #eeeeee;">
             <div class="col-xs-8">
-            <h2>{{item.name}}</h2>
-            <small>{{item.time_created}}</small>
-            <hr></div>
+                <h2>{{item.name}}</h2>
+                <p class="lead">A christmas tree is used to decorate the house</p>
+            </div>
             <div class="col-xs-4">
                 <div class="btn-group btn-group-sm pull-right" role="group">
                     <button style="outline:none;" type="button" class="btn btn-default btn-lg"><i class="ion-ios-arrow-up"></i> {{item.upvotes}}</button>
@@ -16,13 +16,8 @@
                     <button style="outline:none;" type="button" class="btn btn-default btn-lg">&nbsp<i class="ion-ios-more-outline"></i>&nbsp</button>
                 </div>
             </div>
-            
         </div><!-- /row 01 -->
-        <div class="row">
-            <div class="col-md-8">
-                <p>{{item.origin_story}}</p>
-            </div>
-
+        <div class="row" style="padding-top:15px;">
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
@@ -37,12 +32,27 @@
                         <small>Europe</small>
                     </div>
                     <div class="col-md-12">
+                        <h5>Inventor:</h5>
+                        <small>Tesla</small>
+                    </div>
+                    <div class="col-md-12">
                         <h5>Contributors:</h5>
                         {% for contributor in item.contributors.all %}
                             <img class="img-circle" src="http://placehold.it/50x50">
                         {% endfor %}
                     </div>
+                    <div class="col-md-12">
+                        <h5>References:</h5>
+                        <p>Link01</p>
+                        <p>Link01</p>
+                        <p>Link01</p>
+                        <p>Link01</p>
+                    </div>
                 </div>    
+            </div>
+            <div class="col-md-8">
+                <h5>Origins:</h5>
+                <p>{{item.origin_story}}</p>
             </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 .DS_Store
 ENV/
-
+migrations/
 keys.py
 
 db.sqlite3

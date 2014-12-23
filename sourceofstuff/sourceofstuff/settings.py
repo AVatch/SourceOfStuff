@@ -35,9 +35,14 @@ BASE_APPS = (
     'django.contrib.staticfiles',
 )
 
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    '',
+)
 
-CUSTOM_APPS = ()
+CUSTOM_APPS = (
+    'items',
+    'users'
+)
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 

@@ -14,7 +14,7 @@ class Item(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('time_created',)
+        ordering = ('-time_created',)
 
 
 class Reference(models.Model):

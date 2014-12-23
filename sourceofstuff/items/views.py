@@ -1,11 +1,16 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
+from .models import Item
 
 
-class ItemView(View):
-    template_name = 'test.html'
+class ItemDetailView(View):
+    template_name = 'item.html'
 
     def get(self, request, *args, **kwargs):
         callback = {}
-        callback['hello'] = 'world'
         return render(request, self.template_name, callback)
+
+
+class ItemListView(ListView):
+    template_name = 'item_list.html'
+    model = Item

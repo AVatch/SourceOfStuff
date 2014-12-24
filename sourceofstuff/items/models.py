@@ -4,6 +4,9 @@ from contributors.models import Contributor
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
+    first_mentioned = models.DateField(blank=True, null=True)
+    geographic_origin = models.CharField(blank=True, null=True, max_length=100)
+    inventor = models.CharField(blank=True, null=True, max_length=100)
     origin_story = models.TextField()
     contributors = models.ManyToManyField(Contributor)
     upvotes = models.IntegerField(default=0)

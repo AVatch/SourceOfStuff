@@ -1,0 +1,42 @@
+{% extends 'home.html' %}
+
+{% block item %}
+<h3>Add an Item</h3>
+<hr>
+
+<form class="form-horizontal">
+  {% csrf_token %}
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="item">Item:</label>
+      {{itemForm.name}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4">
+      <label for="item">First Mentioned:</label>
+      {{itemForm.first_mentioned}}
+    </div>
+    <div class="col-md-4">
+      <label for="item">Geographic Origin:</label>
+      {{itemForm.geographic_origin}}
+    </div>
+    <div class="col-md-4">
+      <label for="item">Inventor:</label>
+      {{itemForm.inventor}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="item">Origin Story:</label>
+      {{itemForm.origin_story}}
+    </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary pull-right">Create</button>
+</form>
+
+{% endblock %}

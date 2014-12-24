@@ -1,8 +1,9 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
 from django.utils import timezone
+from django.shortcuts import render
 
-from contributors.forms import UserCreateForm, UserAuthForm
 from .models import Item
+from .forms import ItemForm
 
 
 class ItemDetailView(DetailView):
@@ -15,17 +16,26 @@ class ItemDetailView(DetailView):
         # Record the last accessed date
         object.last_accessed = timezone.now()
         object.save()
-        print "HERE IS GETTING THE OBKECT"
         # Return the object
         return object
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(ItemDetailView, self).get_context_data(**kwargs)
-
-        # Add the authentication forms
-        user_create_form = UserCreateForm()
-        context['user_create_form'] = user_create_form
-        user_auth_form = UserAuthForm()
-        context['user_auth_form'] = user_auth_form
         return context
+
+
+class ItemCreateView(View):
+    template_name = 'item_create.html'
+
+    def get(self, request, *args, **kwargs):
+        print "GET"
+        callback = {}
+        itemForm = ItemForm()
+        callback['itemForm'] = itemForm
+        return render(request, self.template_name, callback)
+
+    def post(self, request, *args, **kwargs):
+        print "POST"
+        callback = {}
+        return render(request, self.template_name, callback)

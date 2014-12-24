@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Contributor(AbstractUser):
     bio = models.TextField(blank=True, null=True)
+    profile_img_url = models.URLField(blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True,
                                         blank=True,
                                         null=True)

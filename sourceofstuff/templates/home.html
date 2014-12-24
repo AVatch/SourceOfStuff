@@ -1,65 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
 {% block item %}{% endblock %}
-
-<!-- Join / Register Modal -->
-<div class="modal" id="authModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <!-- Register Form -->
-          <div class="col-md-6">
-            <h4>Join</h4><hr>
-            <form action="/join" method="post">
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="username">Username</label>
-                {{user_create_form.username}}
-              </div>
-              <div class="form-group">
-                <label for="email">Email address</label>
-                {{user_create_form.email}}
-              </div>
-              <div class="form-group">
-                <label for="password1">Password</label>
-                {{user_create_form.password1}}
-              </div>
-              <div class="form-group">
-                <label for="password2">Confirm Password</label>
-                {{user_create_form.password2}}
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Agree to Terms and Services
-                </label>
-              </div>
-              <button type="submit" class="btn btn-default">Go</button>
-            </form>
-          </div>
-          <!-- /END Register Form -->
-          <!-- Signing Form -->
-          <div class="col-md-6">
-            <h4>Signin</h4><hr>
-            <form action="/authenticate" method="post">
-              {% csrf_token %}
-              {{user_auth_form.as_p}}
-              <button type="submit" class="btn btn-default">Go</button>
-            </form>
-
-            <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Facebook</a>
-          </div>
-          <!-- /END Signin Form -->
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-<!-- /END Join / Register Modal -->
-
 {% endblock %}

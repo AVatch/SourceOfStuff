@@ -37,7 +37,7 @@
               </ul>
             </li>
           {% else %}
-            <li><a type="button" data-toggle="modal" data-target="#authModal">Join / Signin</a></li>
+            <li><a class="" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a></li>
           {% endif %}
           
         </ul>

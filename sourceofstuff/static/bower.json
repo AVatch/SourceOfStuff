@@ -17,6 +17,7 @@
   "dependencies": {
     "bootstrap": "~3.3.1",
     "fontawesome": "~4.2.0",
-    "ionicons": "~2.0.0"
+    "ionicons": "~2.0.0",
+    "eonasdan-bootstrap-datetimepicker": "~3.1.3"
   }
 }

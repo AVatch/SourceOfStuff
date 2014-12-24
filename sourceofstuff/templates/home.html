@@ -51,6 +51,8 @@
               {{user_auth_form.as_p}}
               <button type="submit" class="btn btn-default">Go</button>
             </form>
+
+            <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Facebook</a>
           </div>
           <!-- /END Signin Form -->
         </div>

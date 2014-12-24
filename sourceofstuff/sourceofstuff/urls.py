@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^join$', 'contributors.views.join_view'),
     url(r'^authenticate$', 'contributors.views.authenticate_view'),
     url(r'^logout$', 'contributors.views.logout_view'),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 
     url(r'^item/(?P<pk>\d+)/$', ItemDetailView.as_view(), name="item-detail"),
 

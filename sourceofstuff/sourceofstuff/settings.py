@@ -36,6 +36,7 @@ BASE_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'social.apps.django_app.default',
 )
 
 CUSTOM_APPS = (
@@ -70,7 +71,15 @@ DATABASES = {
     }
 }
 
+# Authetntication
+LOGIN_REDIRECT_URL = '/'
+
 AUTH_USER_MODEL = 'contributors.Contributor'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -96,4 +105,10 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+    'django.contrib.auth.context_processors.auth'
 )

@@ -1,10 +1,10 @@
 {% extends 'home.html' %}
-
+{% load staticfiles %}
 {% block item %}
 <h3>Add an Item</h3>
 <hr>
 
-<form class="form-horizontal">
+<form action="/item/create/" method="post" class="form-horizontal">
   {% csrf_token %}
   <div class="form-group">
     <div class="col-md-12">
@@ -35,8 +35,21 @@
     </div>
   </div>
 
-
   <button type="submit" class="btn btn-primary pull-right">Create</button>
 </form>
 
+{% endblock %}
+
+{% block extra_styles %} 
+<link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css' %}" type="text/css" />
+{% endblock %}
+
+{% block extra_scripts %} 
+<script src="{% static 'bower_components/moment/moment.js' %}"></script>
+<script src="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({pickTime: false});
+    });
+</script>
 {% endblock %}

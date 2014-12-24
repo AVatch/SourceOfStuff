@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, View
 from django.utils import timezone
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Item
 from .forms import ItemForm
@@ -29,13 +29,17 @@ class ItemCreateView(View):
     template_name = 'item_create.html'
 
     def get(self, request, *args, **kwargs):
-        print "GET"
         callback = {}
         itemForm = ItemForm()
         callback['itemForm'] = itemForm
         return render(request, self.template_name, callback)
 
     def post(self, request, *args, **kwargs):
-        print "POST"
         callback = {}
+        itemForm = ItemForm(request.POST)
+        if itemForm.is_valid():
+            item = itemForm.save(commit=False)
+            item.save()
+            item.contributors.add(request.user)
+            return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)

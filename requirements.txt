@@ -2,3 +2,4 @@ python-social-auth
 html5lib
 django-wysiwyg
 pillow
+python-twitter

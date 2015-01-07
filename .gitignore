@@ -2,6 +2,7 @@
 ENV/
 migrations/
 bower_components/
+media/
 
 keys.py
 

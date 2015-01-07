@@ -7,10 +7,14 @@
 <h3>Add an Item</h3>
 <hr>
 
-<form action="/item/create/" method="post" class="form-horizontal">
+<form enctype="multipart/form-data" action="/item/create/" method="post" class="form-horizontal">
   {% csrf_token %}
   <div class="form-group">
-    <div class="col-md-12">
+    <div class="col-md-4">
+      <label for="item">Cover Image:</label>
+      {{itemForm.cover}}
+    </div>
+    <div class="col-md-8">
       <label for="item">Item:</label>
       {{itemForm.name}}
     </div>

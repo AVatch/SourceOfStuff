@@ -5,6 +5,7 @@ from contributors.models import Contributor
 class Item(models.Model):
     name = models.CharField(max_length=100)
     cover = models.ImageField(upload_to='items/', blank=True, null=True)
+    summary = models.CharField(max_length=250)
 
     first_mentioned = models.CharField(max_length=20, blank=True, null=True)
     geographic_origin = models.CharField(blank=True, null=True, max_length=100)

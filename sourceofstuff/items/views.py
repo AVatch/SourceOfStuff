@@ -44,9 +44,6 @@ class ItemCreateView(View):
         callback = {}
         itemForm = ItemForm(request.POST, request.FILES)
 
-        print "*"*50
-        print itemForm.errors
-
         if itemForm.is_valid():
             item = itemForm.save(commit=False)
             item.origin_story = sanitize_html(item.origin_story)

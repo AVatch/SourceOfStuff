@@ -33,6 +33,14 @@
 
   <div class="form-group">
     <div class="col-md-12">
+      <label for="item">Summary (250 chars):</label>
+      {{itemForm.summary.errors}}
+      {{itemForm.summary}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12">
       <label for="item">Origin Story:</label>
       {{itemForm.origin_story}}
       {% wysiwyg_editor "id_origin_story" %}

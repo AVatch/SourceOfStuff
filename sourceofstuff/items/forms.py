@@ -11,6 +11,7 @@ class ItemForm(ModelForm):
         super(ItemForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['class'] = 'form-control'
         self.fields['cover'].widget.attrs['class'] = 'form-control'
+        self.fields['summary'].widget.attrs['class'] = 'form-control'
         self.fields['origin_story'].widget.attrs['class'] = 'form-control'
         self.fields['first_mentioned'].widget.attrs['class'] = 'form-control'
         self.fields['geographic_origin'].widget.attrs['class'] = 'form-control'

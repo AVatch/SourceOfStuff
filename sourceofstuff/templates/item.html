@@ -6,7 +6,7 @@
         <div class="row" style="border-bottom:1px solid #eeeeee;">
             <div class="col-xs-8">
                 <h2>{{item.name}}</h2>
-                <p class="lead">A christmas tree is used to decorate the house</p>
+                <p class="lead">{{item.summary}}</p>
             </div>
             <div class="col-xs-4">
                 <div class="btn-group btn-group-sm pull-right" role="group">
@@ -21,7 +21,11 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="img-rounded" src="{{item.cover.url}}" style="width:350; height=350px;">
+                        {% if item.cover %}
+                            <img class="img-rounded" src="{{item.cover.url}}" style="width:350; height=350px;">
+                        {% else %}
+                            <img class="img-rounded" src="http://placehold.it/350x350" style="width:350; height=350px;">
+                        {% endif %}
                     </div>
                     <div class="col-md-12">
                         <h5>First Mention:</h5>

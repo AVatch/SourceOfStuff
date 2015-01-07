@@ -37,6 +37,7 @@ BASE_APPS = (
 
 THIRD_PARTY_APPS = (
     'social.apps.django_app.default',
+    'django_wysiwyg',
 )
 
 CUSTOM_APPS = (
@@ -93,6 +94,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# WYSIWYG Settings
+DJANGO_WYSIWYG_FLAVOR = 'yui'
 
 
 # Static files (CSS, JavaScript, Images)

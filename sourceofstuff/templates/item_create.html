@@ -1,5 +1,8 @@
 {% extends 'home.html' %}
+
 {% load staticfiles %}
+{% load wysiwyg %}
+
 {% block item %}
 <h3>Add an Item</h3>
 <hr>
@@ -32,6 +35,7 @@
     <div class="col-md-12">
       <label for="item">Origin Story:</label>
       {{itemForm.origin_story}}
+      {% wysiwyg_editor "id_origin_story" %}
     </div>
   </div>
 
@@ -42,6 +46,13 @@
 
 {% block extra_styles %} 
 <link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css' %}" type="text/css" />
+{% wysiwyg_setup  %}
+
+<style type="text/css">
+  .yui-editor-container{
+    width:100% !important;
+  }
+</style>
 {% endblock %}
 
 {% block extra_scripts %} 

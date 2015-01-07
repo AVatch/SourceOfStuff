@@ -9,7 +9,7 @@
           <h3 class="panel-title"><a href="/item/{{item.pk}}">{{item.name}}</a></h3>
         </div>
         <div class="panel-body">
-          {{item.origin_story}}
+          {% autoescape off %}{{item.origin_story}}{% endautoescape %}
         </div>
       </div>
     </div>

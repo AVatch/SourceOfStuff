@@ -2,6 +2,8 @@ from django.views.generic import DetailView, View
 from django.utils import timezone
 from django.shortcuts import render, redirect
 
+from django_wysiwyg.utils import clean_html, sanitize_html
+
 from .models import Item
 from .forms import ItemForm
 
@@ -16,6 +18,8 @@ class ItemDetailView(DetailView):
         # Record the last accessed date
         object.last_accessed = timezone.now()
         object.save()
+        # Clean the html
+        object.origin_story = clean_html(object.origin_story)
         # Return the object
         return object
 
@@ -39,6 +43,8 @@ class ItemCreateView(View):
         itemForm = ItemForm(request.POST)
         if itemForm.is_valid():
             item = itemForm.save(commit=False)
+            item.origin_story = sanitize_html(item.origin_story)
+            item.origin_story = clean_html(item.origin_story)
             item.save()
             item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))

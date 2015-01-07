@@ -13,6 +13,5 @@ class ItemForm(ModelForm):
         self.fields['cover'].widget.attrs['class'] = 'form-control'
         self.fields['origin_story'].widget.attrs['class'] = 'form-control'
         self.fields['first_mentioned'].widget.attrs['class'] = 'form-control'
-        self.fields['first_mentioned'].widget.attrs['id'] = 'datetimepicker1'
         self.fields['geographic_origin'].widget.attrs['class'] = 'form-control'
         self.fields['inventor'].widget.attrs['class'] = 'form-control'

@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 
 from django_wysiwyg.utils import clean_html, sanitize_html
 
+from contributors.models import Contributor
+
 from .models import Item
 from .forms import ItemForm
 
@@ -57,19 +59,21 @@ class ItemEditView(View):
     def get(self, request, pk, *args, **kwargs):
         callback = {}
         item = Item.objects.get(pk=pk)
+        callback['item'] = item
         itemForm = ItemForm(instance=item)
         callback['itemForm'] = itemForm
         return render(request, self.template_name, callback)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, pk, *args, **kwargs):
         callback = {}
-        itemForm = ItemForm(request.POST)
+        item = Item.objects.get(pk=pk)
+        itemForm = ItemForm(request.POST, instance=item)
         if itemForm.is_valid():
             item = itemForm.save(commit=False)
             item.last_modified = timezone.now()
             item.save()
             # if this is a new contributor add them
-            if item.contributors.count(request.user) == 0:
+            if Contributor.objects.filter(item__pk=item.pk).count() == 0:
                 item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)

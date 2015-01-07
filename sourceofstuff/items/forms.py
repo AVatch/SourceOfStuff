@@ -5,7 +5,7 @@ from .models import Item
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        exclude = ['contributors', 'upvotes', 'downvotes', 'last_accessed']
+        exclude = ['contributors', 'upvotes', 'downvotes', 'last_accessed', 'last_modified']
 
     def __init__(self, *args, **kwargs):
         super(ItemForm, self).__init__(*args, **kwargs)

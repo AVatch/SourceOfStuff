@@ -7,7 +7,7 @@
 <h3>Edit an Item</h3>
 <hr>
 
-<form action="/item/create/" method="post" class="form-horizontal">
+<form action="/item/edit/{{item.pk}}/" method="post" class="form-horizontal">
   {% csrf_token %}
   <div class="form-group">
     <div class="col-md-12">

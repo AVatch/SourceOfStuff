@@ -1,3 +1,4 @@
 python-social-auth
 html5lib
 django-wysiwyg
+pillow

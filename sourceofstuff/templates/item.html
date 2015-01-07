@@ -25,15 +25,27 @@
                     </div>
                     <div class="col-md-12">
                         <h5>First Mention:</h5>
-                        <small>{{item.cover}}</small>
+                        {% if item.first_mentioned %}
+                            <small>{{item.first_mentioned}}</small>
+                        {% else %}
+                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                        {% endif %}
                     </div>
                     <div class="col-md-12">
                         <h5>Geographic Origin:</h5>
-                        <small>Europe</small>
+                        {% if item.geographic_origin %}
+                            <small>{{item.geographic_origin}}</small>
+                        {% else %}
+                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                        {% endif %}
                     </div>
                     <div class="col-md-12">
                         <h5>Inventor:</h5>
-                        <small>Tesla</small>
+                        {% if item.inventor %}
+                            <small>{{item.inventor}}</small>
+                        {% else %}
+                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                        {% endif %}
                     </div>
                     <div class="col-md-12">
                         <h5>Contributors:</h5>

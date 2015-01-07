@@ -2,6 +2,18 @@ from django.db import models
 from contributors.models import Contributor
 
 
+class Reference(models.Model):
+    src = models.URLField()
+    views = models.IntegerField(default=0)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.src
+
+    class Meta:
+        ordering = ('-time_created',)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=100)
     cover = models.ImageField(upload_to='items/', blank=True, null=True)
@@ -14,6 +26,7 @@ class Item(models.Model):
     origin_story = models.TextField()
 
     contributors = models.ManyToManyField(Contributor)
+
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
 
@@ -26,16 +39,3 @@ class Item(models.Model):
 
     class Meta:
         ordering = ('-time_created',)
-
-
-class Reference(models.Model):
-    src = models.URLField()
-    item = models.ForeignKey(Item)
-    views = models.IntegerField(default=0)
-    time_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.src
-
-    class Meta:
-        ordering = ('item',)

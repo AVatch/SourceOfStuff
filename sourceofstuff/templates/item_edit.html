@@ -33,7 +33,7 @@
 
   <div class="form-group">
     <div class="col-md-12">
-      <label for="item">Summary (250 chars):</label>
+      <label for="item">Summary (<span id="chars"></span> chars):</label>
       {{itemForm.summary.errors}}
       {{itemForm.summary}}
     </div>
@@ -61,4 +61,15 @@
     width:100% !important;
   }
 </style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+  var summaryCharLimit = 250;
+  $('#chars').html(summaryCharLimit.toString());
+
+  $('#id_summary').keypress(function(){    
+    $('#chars').html((summaryCharLimit - $('#id_summary').val().length).toString());
+  });
+</script>
 {% endblock %}

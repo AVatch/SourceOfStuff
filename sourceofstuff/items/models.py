@@ -13,6 +13,7 @@ class Item(models.Model):
     downvotes = models.IntegerField(default=0)
     time_created = models.DateTimeField(auto_now_add=True)
     last_accessed = models.DateTimeField(blank=True, null=True)
+    last_modified = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.name

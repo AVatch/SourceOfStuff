@@ -63,4 +63,13 @@ class ItemEditView(View):
 
     def post(self, request, *args, **kwargs):
         callback = {}
+        itemForm = ItemForm(request.POST)
+        if itemForm.is_valid():
+            item = itemForm.save(commit=False)
+            item.last_modified = timezone.now()
+            item.save()
+            # if this is a new contributor add them
+            if item.contributors.count(request.user) == 0:
+                item.contributors.add(request.user)
+            return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)

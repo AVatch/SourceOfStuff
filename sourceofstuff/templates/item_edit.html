@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% load staticfiles %}
+{% load wysiwyg %}
+
+{% block item %}
+<h3>Edit an Item</h3>
+<hr>
+
+<form action="/item/create/" method="post" class="form-horizontal">
+  {% csrf_token %}
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="item">Item:</label>
+      {{itemForm.name}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4">
+      <label for="item">First Mentioned:</label>
+      {{itemForm.first_mentioned}}
+    </div>
+    <div class="col-md-4">
+      <label for="item">Geographic Origin:</label>
+      {{itemForm.geographic_origin}}
+    </div>
+    <div class="col-md-4">
+      <label for="item">Inventor:</label>
+      {{itemForm.inventor}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="item">Origin Story:</label>
+      {{itemForm.origin_story}}
+      {% wysiwyg_editor "id_origin_story" %}
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary pull-right">Create</button>
+</form>
+
+{% endblock %}
+
+{% block extra_styles %} 
+<link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css' %}" type="text/css" />
+{% wysiwyg_setup  %}
+
+<style type="text/css">
+  .yui-editor-container{
+    width:100% !important;
+  }
+</style>
+{% endblock %}
+
+{% block extra_scripts %} 
+<script src="{% static 'bower_components/moment/moment.js' %}"></script>
+<script src="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({pickTime: false});
+    });
+</script>
+{% endblock %}

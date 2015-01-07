@@ -49,3 +49,18 @@ class ItemCreateView(View):
             item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)
+
+
+class ItemEditView(View):
+    template_name = 'item_edit.html'
+
+    def get(self, request, pk, *args, **kwargs):
+        callback = {}
+        item = Item.objects.get(pk=pk)
+        itemForm = ItemForm(instance=item)
+        callback['itemForm'] = itemForm
+        return render(request, self.template_name, callback)
+
+    def post(self, request, *args, **kwargs):
+        callback = {}
+        return render(request, self.template_name, callback)

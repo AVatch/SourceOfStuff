@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 from .views import BaseView
-from items.views import ItemDetailView, ItemCreateView
+from items.views import ItemDetailView, ItemCreateView, ItemEditView
 
 urlpatterns = patterns('',
     url(r'^$', BaseView.as_view()),
@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^item/(?P<pk>\d+)/$', ItemDetailView.as_view(), name="item-detail"),
     url(r'^item/create/$', ItemCreateView.as_view(), name="item-create"),
+    url(r'^item/edit/(?P<pk>\d+)/$', ItemEditView.as_view(), name="item-edit"),
 
     url(r'^admin/', include(admin.site.urls)),
 )

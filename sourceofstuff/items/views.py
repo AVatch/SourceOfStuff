@@ -78,3 +78,17 @@ class ItemEditView(View):
                 item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)
+
+
+class ItemVoteView(View):
+    def get(self, request, vote, pk, *args, **kwargs):
+        item = Item.objects.get(pk=pk)
+        if vote == 'up':
+            item.upvotes += 1
+            item.save()
+        elif vote == 'down':
+            item.downvotes += 1
+            item.save()
+        else:
+            pass
+        return redirect('/item/'+str(item.id))

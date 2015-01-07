@@ -10,7 +10,6 @@ def join_view(request):
     if user_form.is_valid():
         username = user_form.clean_username()
         password = user_form.clean_password2()
-        user_form.save()
         user = authenticate(username=username,
                             password=password)
         login(request, user)

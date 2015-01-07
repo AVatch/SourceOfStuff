@@ -5,18 +5,28 @@
   
     <div class="col-md-4">
       <div class="panel panel-default" style="height:400px;">
-        <div class="panel-heading">
+        <div class="panel-heading">    
           <h3 class="panel-title"><a href="/item/{{item.pk}}">{{item.name}}</a></h3>
+
         </div>
         <div class="panel-body">
-          <div class="cover-container" style="display:block; height:70%;">
+          <div class="cover-container" style="display:block; height:50%; overflow:hidden;">
             {% if item.cover %}
+              <a href="/item/{{item.pk}}">
                 <img class="img-rounded" src="{{item.cover.url}}" style="width:100%; height=100%;">
+              </a>
             {% else %}
+              <a href="/item/{{item.pk}}">
                 <img class="img-rounded" src="http://placehold.it/350x350" style="width:100%; height=100%;">
+              </a>
             {% endif %}
           </div>
-          <div class="summary-container" style="display:block; height:20%; overflow-y:auto; background-color:#f5f5f5;">
+          <div class="contributor-container" style="padding:5px; overflow:auto; white-space:nowrap;">
+            {% for contributor in item.contributors.all %}
+              <img class="img-circle" src="http://placehold.it/50x50">
+            {% endfor %}
+          </div>
+          <div class="summary-container" style="display:block; height:20%; overflow-y:auto; padding:5px; border-radius:5px; background-color:#f5f5f5;">
             {{item.summary}}
           </div>
         </div>

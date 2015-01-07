@@ -4,7 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from .views import BaseView
-from items.views import ItemDetailView, ItemCreateView, ItemEditView
+from items.views import ItemDetailView, ItemCreateView, \
+    ItemEditView, ItemVoteView
 
 urlpatterns = patterns('',
     url(r'^$', BaseView.as_view()),
@@ -17,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^item/(?P<pk>\d+)/$', ItemDetailView.as_view(), name="item-detail"),
     url(r'^item/create/$', ItemCreateView.as_view(), name="item-create"),
     url(r'^item/edit/(?P<pk>\d+)/$', ItemEditView.as_view(), name="item-edit"),
+    url(r'^item/vote/(?P<vote>[a-z]+)/(?P<pk>\d+)/$', ItemVoteView.as_view(), name="item-vote"),
 
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

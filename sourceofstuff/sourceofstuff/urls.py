@@ -3,12 +3,11 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from .views import BaseView
 from items.views import ItemDetailView, ItemCreateView, \
-    ItemEditView, ItemVoteView
+    ItemListView, ItemEditView, ItemVoteView
 
 urlpatterns = patterns('',
-    url(r'^$', BaseView.as_view()),
+    url(r'^$', ItemListView.as_view(), name="home"),
 
     url(r'^join$', 'contributors.views.join_view'),
     url(r'^authenticate$', 'contributors.views.authenticate_view'),
@@ -16,6 +15,7 @@ urlpatterns = patterns('',
     url('', include('social.apps.django_app.urls', namespace='social')),
 
     url(r'^item/(?P<pk>\d+)/$', ItemDetailView.as_view(), name="item-detail"),
+    url(r'^item/list/(?P<page>\d+)/$', ItemListView.as_view(), name="item-list"),
     url(r'^item/create/$', ItemCreateView.as_view(), name="item-create"),
     url(r'^item/edit/(?P<pk>\d+)/$', ItemEditView.as_view(), name="item-edit"),
     url(r'^item/vote/(?P<vote>[a-z]+)/(?P<pk>\d+)/$', ItemVoteView.as_view(), name="item-vote"),

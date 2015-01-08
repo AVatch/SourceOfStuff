@@ -14,12 +14,11 @@ from .forms import ItemForm
 class ItemListView(View):
     template_name = 'item_list.html'
 
-    def get(self, request, page, *args, **kwargs):
+    def get(self, request, page=None, *args, **kwargs):
         callback = {}
         item_list = Item.objects.all()
         # Pagination: https://docs.djangoproject.com/en/1.7/topics/pagination/
         paginated_items = Paginator(item_list, 10)
-        page = request.GET('page')
         try:
             items = paginated_items.page(page)
         except PageNotAnInteger:
@@ -33,7 +32,6 @@ class ItemListView(View):
         callback['item_list'] = items
 
         return render(request, self.template_name, callback)
-
 
 
 class ItemDetailView(DetailView):

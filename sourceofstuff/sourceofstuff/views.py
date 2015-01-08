@@ -13,6 +13,8 @@ class BaseView(View):
 
         # Pull the most recent items
         item_list = Item.objects.all()
+
+        ## Pagination: https://docs.djangoproject.com/en/1.7/topics/pagination/
         # paginated_items = Paginator(item_list, 2)
         # page = request.GET('page')
         # try:

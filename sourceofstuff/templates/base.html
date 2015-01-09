@@ -20,20 +20,20 @@
         <a class="navbar-brand" href="/">Source of Stuff</a>
       </div>
       <div class="navbar-collapse collapse navbar-inverse-collapse">
-        <form class="navbar-form navbar-left">
+        <!-- <form class="navbar-form navbar-left">
           <input type="text" class="form-control col-lg-8" placeholder="Search">
-        </form>
+        </form> -->
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
-            <li><a href="#" class="ion-ios-keypad-outline"style="font-size:25px;"></a></li>
+            <!-- <li><a href="#" class="ion-ios-keypad-outline"style="font-size:25px;"></a></li> -->
             <li><a href="/item/create/" class="ion-ios-plus-outline"style="font-size:25px;"></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
+                <!-- <li><a href="#">Profile</a></li>
                 <li><a href="#">Settings</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Contribute</a></li>
+                <li class="divider"></li> -->
+                <li><a href="#" data-toggle="modal" data-target="#contributeModal">Contribute</a></li>
                 <li class="divider"></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
@@ -47,10 +47,50 @@
     </div>
     <!-- /END Navbar -->
 
+    <!-- Contribute Modal -->
+    <div class="modal fade" id="contributeModal" tabindex="-1" role="dialog" aria-labelledby="contributeModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Contribute to Source of Stuff</h4>
+          </div>
+          <div class="modal-body">
+            <p>Source of Stuff is an effort to catalog and archive the not so ordinary origins of ordinary items found around the world!</p>
+            <p>If you are finding Source of Stuff an educational and useful tool, consider contributing to the project effort</p>
+
+            <hr>
+            
+            <div class="text-center">
+              <a href="#" class="btn btn-primary">Twitter</a>
+            </div>
+
+            <hr>
+            <div class="text-center">
+              <a href="#" class="btn btn-default">GitHub Repo</a>              
+            </div>
+
+            <hr>
+
+            <p>Thank you, and look forward to new updates and features :)</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Contribute Modal -->
+
     {% block content %} {% endblock %}
 
     <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
     <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
+
+    <script type="text/javascript">
+      $('#contributeModal').on('shown.bs.modal', function () {
+        $('#contributeModalToggle').focus();
+      });
+    </script>
+
     {% block extra_scripts %} {% endblock %}
   </body>
 </html>

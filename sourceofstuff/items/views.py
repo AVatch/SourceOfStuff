@@ -40,7 +40,8 @@ class ItemListView(View):
             items = None
 
         callback['item_list'] = items
-
+        if page is None:
+            callback['first_page'] = True
         #################################################################
         # This is a hack - because twitter profile pic is annoying to get
         if request.user.id is not None:

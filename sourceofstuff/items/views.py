@@ -1,5 +1,4 @@
 from django.views.generic import DetailView, View
-from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -89,14 +88,12 @@ class ItemDetailView(DetailView):
 class ItemCreateView(View):
     template_name = 'item_create.html'
 
-    @login_required
     def get(self, request, *args, **kwargs):
         callback = {}
         itemForm = ItemForm()
         callback['itemForm'] = itemForm
         return render(request, self.template_name, callback)
 
-    @login_required
     def post(self, request, *args, **kwargs):
         callback = {}
         itemForm = ItemForm(request.POST, request.FILES)
@@ -120,7 +117,6 @@ class ItemCreateView(View):
 class ItemEditView(View):
     template_name = 'item_edit.html'
 
-    @login_required
     def get(self, request, pk, *args, **kwargs):
         callback = {}
         item = Item.objects.get(pk=pk)
@@ -129,7 +125,6 @@ class ItemEditView(View):
         callback['itemForm'] = itemForm
         return render(request, self.template_name, callback)
 
-    @login_required
     def post(self, request, pk, *args, **kwargs):
         callback = {}
         item = Item.objects.get(pk=pk)
@@ -154,7 +149,6 @@ class ItemEditView(View):
 
 
 class ItemVoteView(View):
-    @login_required
     def get(self, request, vote, pk, *args, **kwargs):
         item = Item.objects.get(pk=pk)
 

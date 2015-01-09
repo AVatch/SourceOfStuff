@@ -25,7 +25,11 @@ class Item(models.Model):
 
     origin_story = models.TextField()
 
-    contributors = models.ManyToManyField(Contributor)
+    contributors = models.ManyToManyField(Contributor,
+                                          related_name="item_contributors")
+    raters = models.ManyToManyField(Contributor,
+                                    related_name="item_raters",
+                                    blank=True, null=True)
 
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)

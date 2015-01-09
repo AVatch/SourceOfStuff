@@ -128,12 +128,21 @@ class ItemEditView(View):
 class ItemVoteView(View):
     def get(self, request, vote, pk, *args, **kwargs):
         item = Item.objects.get(pk=pk)
-        if vote == 'up':
-            item.upvotes += 1
-            item.save()
-        elif vote == 'down':
-            item.downvotes += 1
-            item.save()
+
+        if request.user in item.raters.all():
+            print "User rated this, skip"
         else:
-            pass
+            print "User did not rate this, go on"
+
+            if vote == 'up':
+                item.upvotes += 1
+                item.save()
+            elif vote == 'down':
+                item.downvotes += 1
+                item.save()
+            else:
+                return redirect('/item/'+str(item.id))
+
+            item.raters.add(request.user)
+
         return redirect('/item/'+str(item.id))

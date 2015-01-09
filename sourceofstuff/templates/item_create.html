@@ -6,7 +6,6 @@
 {% block item %}
 <h3>Add an Item</h3>
 <hr>
-
 <form enctype="multipart/form-data" action="/item/create/" method="post" class="form-horizontal">
   {% csrf_token %}
 
@@ -61,6 +60,8 @@
 
   <button type="submit" class="btn btn-primary pull-right">Create</button>
 </form>
+
+<span style="display:block; height:50px;"></span>
 
 {% endblock %}
 

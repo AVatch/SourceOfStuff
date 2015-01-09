@@ -25,8 +25,10 @@ class ItemListView(View):
         paginated_items = Paginator(item_list, 10)
         try:
             items = paginated_items.page(page)
+            callback['next_page'] = page + 1
         except PageNotAnInteger:
             items = paginated_items.page(1)
+            callback['next_page'] = 2
         except EmptyPage:
             items = paginated_items.page(paginated_items.num_pages)
         except Exception as e:
@@ -34,6 +36,7 @@ class ItemListView(View):
             items = None
 
         callback['item_list'] = items
+
 
         # This is a hack - because twitter profile pic is annoying to get
         if request.user.id is not None:

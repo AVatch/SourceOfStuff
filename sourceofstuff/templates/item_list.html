@@ -1,7 +1,8 @@
 {% extends 'home.html' %}
 
 {% block item %}
-{% for item in item_list %}
+  <div class="row">
+  {% for item in item_list %}
   
     <div class="col-md-4">
       <div class="panel panel-default" style="height:400px;">
@@ -37,5 +38,13 @@
       </div>
     </div>
   
-{% endfor %}
+  {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      {% if next_page %}
+        <a href="/item/list/{{next_page}}" class="btn btn-primary">Load More</a>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

@@ -25,7 +25,7 @@ class ItemListView(View):
         paginated_items = Paginator(item_list, 10)
         try:
             items = paginated_items.page(page)
-            callback['next_page'] = page + 1
+            callback['next_page'] = int(page) + 1
         except PageNotAnInteger:
             items = paginated_items.page(1)
             callback['next_page'] = 2
@@ -104,7 +104,7 @@ class ItemCreateView(View):
                 item.tags.add(tag)
 
             return redirect('/item/'+str(item.id))
-        callback['itemForm'] = itemForm
+        callback['itemForm'] = itemForm  # return form with errors
         return render(request, self.template_name, callback)
 
 
@@ -138,6 +138,7 @@ class ItemEditView(View):
             if Contributor.objects.filter(item_contributors__pk=item.pk).count() == 0:
                 item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
+        callback['itemForm'] = itemForm  # return form with errors
         return render(request, self.template_name, callback)
 
 

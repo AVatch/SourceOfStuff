@@ -9,47 +9,48 @@
 
 <form action="/item/edit/{{item.pk}}/" method="post" class="form-horizontal">
   {% csrf_token %}
+  
   <div class="form-group">
-    <div class="col-md-12">
+    <div class="col-md-4">
+      <label for="item">Cover Image:</label>
+      {{itemForm.cover}}
+    </div>
+    <div class="col-md-8 {% if itemForm.name.errors %} has-error {% endif %} ">
       <label for="item">Item:</label>
       {{itemForm.name}}
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-md-3">
+    <div class="col-md-3 {% if itemForm.first_mentioned.errors %} has-error {% endif %}">
       <label for="item">First Mentioned:</label>
-      {{itemForm.first_mentioned.errors}}
       {{itemForm.first_mentioned}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 {% if itemForm.geographic_origin.errors %} has-error {% endif %}">
       <label for="item">Geographic Origin:</label>
-      {{itemForm.geographic_origin.errors}}
       {{itemForm.geographic_origin}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 {% if itemForm.inventor.errors %} has-error {% endif %}">
       <label for="item">Inventor:</label>
-      {{itemForm.inventor.errors}}
       {{itemForm.inventor}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 {% if itemForm.tags.errors %} has-error {% endif %}">
       <label for="item">Tags (Comma Seperate):</label>
-      {{itemForm.tags.errors}}
       {{itemForm.tags}}
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-md-12">
+    <div class="col-md-12 {% if itemForm.summary.errors %} has-error {% endif %}">
       <label for="item">Summary (<span id="chars"></span> chars):</label>
-      {{itemForm.summary.errors}}
       {{itemForm.summary}}
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group {% if itemForm.origin_story.errors %} has-error {% endif %}">
     <div class="col-md-12">
       <label for="item">Origin Story:</label>
+      {{itemForm.origin_story.errors}}
       {{itemForm.origin_story}}
       {% wysiwyg_editor "id_origin_story" %}
     </div>

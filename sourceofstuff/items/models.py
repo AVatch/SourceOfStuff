@@ -1,5 +1,6 @@
 from django.db import models
 from contributors.models import Contributor
+from taggit.managers import TaggableManager
 
 
 class Reference(models.Model):
@@ -33,6 +34,8 @@ class Item(models.Model):
 
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
+
+    tags = TaggableManager()
 
     time_created = models.DateTimeField(auto_now_add=True)
     last_accessed = models.DateTimeField(blank=True, null=True)

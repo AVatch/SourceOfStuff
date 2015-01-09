@@ -38,6 +38,7 @@ BASE_APPS = (
 THIRD_PARTY_APPS = (
     'social.apps.django_app.default',
     'django_wysiwyg',
+    'taggit'
 )
 
 CUSTOM_APPS = (

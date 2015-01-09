@@ -92,12 +92,21 @@ class ItemCreateView(View):
         callback = {}
         itemForm = ItemForm(request.POST, request.FILES)
 
+        print "*"*50
+        print itemForm
+        print "*"*50
+
         if itemForm.is_valid():
             item = itemForm.save(commit=False)
             item.origin_story = sanitize_html(item.origin_story)
             item.origin_story = clean_html(item.origin_story)
             item.save()
             item.contributors.add(request.user)
+
+            for tag in itemForm.cleaned_data['tags']:
+                if tag not in item.tags.all():
+                    item.tags.add(tag)
+
             return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)
 

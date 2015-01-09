@@ -141,7 +141,7 @@ class ItemEditView(View):
                 item.tags.add(tag)
 
             # if this is a new contributor add them
-            if Contributor.objects.filter(item_contributors__pk=item.pk).count() == 0:
+            if Item.objects.filter(contributors__pk=request.user.pk).count() == 0:
                 item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
         callback['itemForm'] = itemForm  # return form with errors

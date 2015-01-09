@@ -62,6 +62,13 @@
                         {% endfor %}
                     </div>
                     <div class="col-md-12">
+                        <h5>Tags:</h5>
+                        {% for tag in item.tags.all %}
+                            {{tag}},
+                        {% endfor %}
+                        <a href="/item/edit/{{item.pk}}"><small>Add tags</small></a>
+                    </div>
+                    <div class="col-md-12">
                         <h5>References:</h5>
                         <p>Link01</p>
                         <p>Link01</p>

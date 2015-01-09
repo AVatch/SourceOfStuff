@@ -17,17 +17,25 @@
   </div>
 
   <div class="form-group">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="item">First Mentioned:</label>
+      {{itemForm.first_mentioned.errors}}
       {{itemForm.first_mentioned}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="item">Geographic Origin:</label>
+      {{itemForm.geographic_origin.errors}}
       {{itemForm.geographic_origin}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="item">Inventor:</label>
+      {{itemForm.inventor.errors}}
       {{itemForm.inventor}}
+    </div>
+    <div class="col-md-3">
+      <label for="item">Tags (Comma Seperate):</label>
+      {{itemForm.tags.errors}}
+      {{itemForm.tags}}
     </div>
   </div>
 

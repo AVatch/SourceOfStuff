@@ -16,3 +16,4 @@ class ItemForm(ModelForm):
         self.fields['first_mentioned'].widget.attrs['class'] = 'form-control'
         self.fields['geographic_origin'].widget.attrs['class'] = 'form-control'
         self.fields['inventor'].widget.attrs['class'] = 'form-control'
+        self.fields['tags'].widget.attrs['class'] = 'form-control'

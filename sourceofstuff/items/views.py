@@ -92,10 +92,6 @@ class ItemCreateView(View):
         callback = {}
         itemForm = ItemForm(request.POST, request.FILES)
 
-        print "*"*50
-        print itemForm
-        print "*"*50
-
         if itemForm.is_valid():
             item = itemForm.save(commit=False)
             item.origin_story = sanitize_html(item.origin_story)
@@ -103,6 +99,7 @@ class ItemCreateView(View):
             item.save()
             item.contributors.add(request.user)
 
+            # Handle the tagging
             for tag in itemForm.cleaned_data['tags']:
                 if tag not in item.tags.all():
                     item.tags.add(tag)
@@ -130,8 +127,14 @@ class ItemEditView(View):
             item = itemForm.save(commit=False)
             item.last_modified = timezone.now()
             item.save()
+
+            # Tags
+            for tag in itemForm.cleaned_data['tags']:
+                if tag not in item.tags.all():
+                    item.tags.add(tag)
+
             # if this is a new contributor add them
-            if Contributor.objects.filter(item__pk=item.pk).count() == 0:
+            if Contributor.objects.filter(item_contributors__pk=item.pk).count() == 0:
                 item.contributors.add(request.user)
             return redirect('/item/'+str(item.id))
         return render(request, self.template_name, callback)

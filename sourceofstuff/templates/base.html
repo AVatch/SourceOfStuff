@@ -39,7 +39,7 @@
               </ul>
             </li>
           {% else %}
-            <li><a class="" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a></li>
+            <li><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a></li>
           {% endif %}
           
         </ul>

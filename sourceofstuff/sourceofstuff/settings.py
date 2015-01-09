@@ -79,6 +79,7 @@ AUTH_USER_MODEL = 'contributors.Contributor'
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
+    'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 

@@ -54,7 +54,11 @@
                     <div class="col-md-12">
                         <h5>Contributors:</h5>
                         {% for contributor in item.contributors.all %}
-                            <img class="img-circle" src="http://placehold.it/50x50">
+                            {% if contributor.profile_img_url %}
+                                <img class="img-circle" src="{{contributor.profile_img_url}}" style="width:48px; height:48px;">
+                            {% else %}
+                                <img class="img-circle" src="http://placehold.it/50x50" style="width:48px; height:48px;">
+                            {% endif %}
                         {% endfor %}
                     </div>
                     <div class="col-md-12">

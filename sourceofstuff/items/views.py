@@ -7,6 +7,10 @@ from django_wysiwyg.utils import clean_html, sanitize_html
 
 from contributors.models import Contributor
 
+from sourceofstuff.keys import SOCIAL_AUTH_TWITTER_KEY, SOCIAL_AUTH_TWITTER_SECRET
+
+from twython import Twython
+
 from .models import Item
 from .forms import ItemForm
 
@@ -30,6 +34,23 @@ class ItemListView(View):
             items = None
 
         callback['item_list'] = items
+
+        # This is a hack - because twitter profile pic is annoying to get
+        if request.user.id is not None:
+            if request.user.profile_img_url is None:
+                user = Contributor.objects.get(username=request.user)
+                social = user.social_auth.get(provider='twitter')
+                access_token = social.extra_data['access_token']
+
+                t = Twython(app_key=SOCIAL_AUTH_TWITTER_KEY,
+                            app_secret=SOCIAL_AUTH_TWITTER_SECRET,
+                            oauth_token=access_token[u'oauth_token'],
+                            oauth_token_secret=access_token[u'oauth_token_secret'])
+
+                twitter_account = t.show_user(screen_name=request.user.username)
+                profile_img_url = twitter_account[u'profile_image_url']
+                user.profile_img_url = profile_img_url
+                user.save()
 
         return render(request, self.template_name, callback)
 

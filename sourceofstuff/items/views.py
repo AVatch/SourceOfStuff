@@ -18,11 +18,15 @@ from .forms import ItemForm
 class ItemListView(View):
     template_name = 'item_list.html'
 
-    def get(self, request, page=None, *args, **kwargs):
+    def get(self, request, page=None, modifier=None, *args, **kwargs):
         callback = {}
-        item_list = Item.objects.all()
+        if modifier:
+            print "using a modifier"
+            item_list = Item.objects.all()
+        else:
+            item_list = Item.objects.all()
         # Pagination: https://docs.djangoproject.com/en/1.7/topics/pagination/
-        paginated_items = Paginator(item_list, 10)
+        paginated_items = Paginator(item_list, 9)
         try:
             items = paginated_items.page(page)
             callback['next_page'] = int(page) + 1
@@ -37,7 +41,7 @@ class ItemListView(View):
 
         callback['item_list'] = items
 
-
+        #################################################################
         # This is a hack - because twitter profile pic is annoying to get
         if request.user.id is not None:
             if request.user.profile_img_url is None:
@@ -54,6 +58,7 @@ class ItemListView(View):
                 profile_img_url = twitter_account[u'profile_image_url']
                 user.profile_img_url = profile_img_url
                 user.save()
+        #################################################################
 
         return render(request, self.template_name, callback)
 

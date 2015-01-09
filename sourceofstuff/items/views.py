@@ -101,10 +101,10 @@ class ItemCreateView(View):
 
             # Handle the tagging
             for tag in itemForm.cleaned_data['tags']:
-                if tag not in item.tags.all():
-                    item.tags.add(tag)
+                item.tags.add(tag)
 
             return redirect('/item/'+str(item.id))
+        callback['itemForm'] = itemForm
         return render(request, self.template_name, callback)
 
 
@@ -129,9 +129,10 @@ class ItemEditView(View):
             item.save()
 
             # Tags
+            for tag in item.tags.all():
+                item.tags.remove(tag)
             for tag in itemForm.cleaned_data['tags']:
-                if tag not in item.tags.all():
-                    item.tags.add(tag)
+                item.tags.add(tag)
 
             # if this is a new contributor add them
             if Contributor.objects.filter(item_contributors__pk=item.pk).count() == 0:

@@ -17,5 +17,6 @@
 /* close commented backslash hack */
 
 .origin-container span{
+  line-height: 1.846 !important;
   font-size: 18px !important;
 }

@@ -36,7 +36,9 @@
           <div class="contributor-container" style="padding:5px; overflow:auto; white-space:nowrap;">
             {% for contributor in item.contributors.all %}
               {% if contributor.profile_img_url %}
-                <img class="img-circle" src="{{contributor.profile_img_url}}" style="width:48px; height:48px;">
+                <a target="_blank" href="https://twitter.com/{{contributor.username}}">
+                  <img class="img-circle" src="{{contributor.profile_img_url}}" style="width:48px; height:48px;">
+                </a>
               {% else %}
                 <img class="img-circle" src="http://placehold.it/50x50" style="width:48px; height:48px;">
               {% endif %}

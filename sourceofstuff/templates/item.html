@@ -33,7 +33,11 @@
                         {% if item.first_mentioned %}
                             <small>{{item.first_mentioned}}</small>
                         {% else %}
-                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% if user.is_authenticated %}
+                                <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% else %}
+                                Please sign in
+                            {% endif %}
                         {% endif %}
                     </div>
                     <div class="col-md-12">
@@ -41,7 +45,11 @@
                         {% if item.geographic_origin %}
                             <small>{{item.geographic_origin}}</small>
                         {% else %}
-                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% if user.is_authenticated %}
+                                <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% else %}
+                                Please sign in
+                            {% endif %}
                         {% endif %}
                     </div>
                     <div class="col-md-12">
@@ -49,7 +57,11 @@
                         {% if item.inventor %}
                             <small>{{item.inventor}}</small>
                         {% else %}
-                            <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% if user.is_authenticated %}
+                                <a href="/item/edit/{{item.pk}}"><small>Contribute to Entry</small></a>
+                            {% else %}
+                                Please sign in
+                            {% endif %}
                         {% endif %}
                     </div>
                     <div class="col-md-12">
@@ -69,7 +81,9 @@
                         {% for tag in item.tags.all %}
                             {{tag}},
                         {% endfor %}
-                        <a href="/item/edit/{{item.pk}}"><small>Add tags</small></a>
+                        {% if user.is_authenticated %}
+                            <a href="/item/edit/{{item.pk}}"><small>Add tags</small></a>
+                        {% endif %}
                     </div>
                     <!-- <div class="col-md-12">
                         <h5>References:</h5>
